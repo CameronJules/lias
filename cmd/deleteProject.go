@@ -4,7 +4,6 @@ Copyright © 2025 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/CameronJules/lias/alias"
@@ -12,9 +11,9 @@ import (
 	"github.com/spf13/viper"
 )
 
-// listProjectsCmd represents the listProjects command
-var listProjectsCmd = &cobra.Command{
-	Use:   "projects",
+// deleteProjectCmd represents the deleteProject command
+var deleteProjectCmd = &cobra.Command{
+	Use:   "project",
 	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
@@ -22,30 +21,44 @@ and usage of using your command. For example:
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
-	Run: listProjects,
+	Run: deleteProject,
 }
 
-func listProjects(cmd *cobra.Command, args []string) {
+func deleteProject(cmd *cobra.Command, args []string) {
+	if len(args) != 1 {
+		log.Fatalf("Delete project takes 1 cinput but got %v", len(args))
+	}
+
+	project_to_delete := args[0]
 	projects, err := alias.ReadProjects(viper.GetString("datafile"))
 
 	if err != nil {
-		log.Printf("%v", err)
+		log.Fatalf("Error: %v", err)
 	}
-	for i, project := range projects {
-		fmt.Println("(", i, ") ", project.Name)
+
+	var updatedProjects []alias.Project
+	for _, proj := range projects {
+		if proj.Name == project_to_delete {
+			continue
+		} else {
+			updatedProjects = append(updatedProjects, proj)
+		}
+	}
+	if err := alias.SaveProjects(viper.GetString("datafile"), updatedProjects); err != nil {
+		log.Fatalf("Error: %v", err)
 	}
 }
 
 func init() {
-	listCmd.AddCommand(listProjectsCmd)
+	deleteCmd.AddCommand(deleteProjectCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// listProjectsCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// deleteProjectCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// listProjectsCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// deleteProjectCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
