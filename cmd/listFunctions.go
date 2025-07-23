@@ -21,14 +21,18 @@ var listFunctionsCmd = &cobra.Command{
 }
 
 func listFunctions(cmd *cobra.Command, args []string) {
-	if len(args) != 1 {
+	if len(args) != 0 {
 		log.Fatalf(`
 	Error: Incorrect number of arguments for list project command
 	
-	Details: Expected 1, instead got: %v`, len(args))
+	Details: Expected 0, instead got: %v`, len(args))
 	}
 
-	project_name := args[0]
+	active_project := viper.GetString("active_project")
+	if active_project == "" {
+		log.Fatal("Active project not set. run the command 'lias use [project] to set a project")
+	}
+	// project_name := args[0]
 	projects, err := alias.ReadProjects(viper.GetString("datafile"))
 
 	if err != nil {
@@ -38,14 +42,14 @@ func listFunctions(cmd *cobra.Command, args []string) {
 	found := false
 	var project alias.Project
 	for _, proj := range projects {
-		if proj.Name == project_name {
+		if proj.Name == active_project {
 			found = true
 			project = proj
 		}
 	}
 
 	if !found {
-		log.Fatalf("Error: project %v not found", project_name)
+		log.Fatalf("Error: project %v not found", active_project)
 	}
 
 	for key, function := range project.Functions {

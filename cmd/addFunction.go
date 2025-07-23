@@ -23,9 +23,17 @@ var addFunctionCmd = &cobra.Command{
 }
 
 func addFunction(cmd *cobra.Command, args []string) {
-	project_name := args[0]
-	function_alias := args[1]
-	function_string := args[2]
+	active_project := viper.GetString("active_project")
+
+	if active_project == "" {
+		log.Fatal("Active project not set. run the command 'lias use [project] to set a project")
+	}
+
+	if len(args) != 2 {
+		log.Fatalln("lias expected 2 arguments but got:", len(args))
+	}
+	function_alias := args[0]
+	function_string := args[1]
 
 	projects, err := alias.ReadProjects(viper.GetString("datafile"))
 	if err != nil {
@@ -33,7 +41,7 @@ func addFunction(cmd *cobra.Command, args []string) {
 	}
 
 	for _, project := range projects {
-		if project.Name == project_name {
+		if project.Name == active_project {
 			project.Functions[function_alias] = function_string
 		}
 	}

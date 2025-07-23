@@ -26,7 +26,7 @@ var runCmd = &cobra.Command{
 // Execute the alias specified by the users input project and function alias
 // Read in all of the projects and search for the project
 func runFunction(cmd *cobra.Command, args []string) {
-	if len(args) != 2 {
+	if len(args) != 1 {
 		log.Fatalf(`
 	Error: incorrect number of arguments for run command.
 
@@ -36,8 +36,12 @@ func runFunction(cmd *cobra.Command, args []string) {
 	Tip:
 		Format should be "lias run projectName FunctionName"`, len(args))
 	}
-	project_name := args[0]
-	function_name := args[1]
+	active_project := viper.GetString("active_project")
+	if active_project == "" {
+		log.Fatal("Active project not set. run the command 'lias use [project] to set a project")
+	}
+
+	function_name := args[0]
 
 	projects, err := alias.ReadProjects(viper.GetString("datafile"))
 	if err != nil {
@@ -47,14 +51,14 @@ func runFunction(cmd *cobra.Command, args []string) {
 	var userCommand string
 	projectFound := false
 	for _, proj := range projects {
-		if proj.Name == project_name {
+		if proj.Name == active_project {
 			projectFound = true
 			userCommand = proj.Functions[function_name]
 		}
 	}
 
 	if !projectFound {
-		log.Fatalf("Error: project %v not found.", project_name)
+		log.Fatalf("Error: project %v not found.", active_project)
 	}
 	if userCommand == "" {
 		log.Fatalf("Error: command %v found.", function_name)

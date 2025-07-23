@@ -22,12 +22,16 @@ var deleteFunctionCmd = &cobra.Command{
 }
 
 func deleteFunction(cmd *cobra.Command, args []string) {
-	if len(args) != 2 {
+	if len(args) != 1 {
 		log.Fatalf("delete function expects 2 args but received %v", len(args))
 	}
 
-	project_name := args[0]
-	function_name := args[1]
+	active_project := viper.GetString("active_project")
+	if active_project == "" {
+		log.Fatal("Active project not set. run the command 'lias use [project] to set a project")
+	}
+
+	function_name := args[0]
 
 	projects, err := alias.ReadProjects(viper.GetString("datafile"))
 
@@ -37,7 +41,7 @@ func deleteFunction(cmd *cobra.Command, args []string) {
 
 	var updatedProjects []alias.Project
 	for _, proj := range projects {
-		if proj.Name == project_name {
+		if proj.Name == active_project {
 			delete(proj.Functions, function_name)
 		}
 		updatedProjects = append(updatedProjects, proj)

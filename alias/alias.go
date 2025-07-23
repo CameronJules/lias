@@ -15,6 +15,12 @@ type Project struct {
 	Functions map[string]string
 }
 
+type NotFoundError struct{}
+
+func (e *NotFoundError) Error() string {
+	return "file not found"
+}
+
 // Save projects to a specified file location
 func SaveProjects(filename string, projects []Project) error {
 	b, err := json.Marshal(projects)
@@ -32,6 +38,7 @@ func SaveProjects(filename string, projects []Project) error {
 
 func ReadProjects(filename string) ([]Project, error) {
 	b, err := os.ReadFile(filename)
+
 	if err != nil {
 		return []Project{}, err
 	}

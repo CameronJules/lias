@@ -26,7 +26,12 @@ var addProjectCmd = &cobra.Command{
 func addProject(cmd *cobra.Command, args []string) {
 	projects, err := alias.ReadProjects(viper.GetString("datafile"))
 	if err != nil {
-		log.Printf("%v", err)
+		if err.Error() != "no such file or directory" {
+			log.Printf("%v", err)
+		} else {
+			fmt.Printf("Attempting save to: %v", viper.GetString("datafile"))
+		}
+
 	}
 	name := args[0]
 

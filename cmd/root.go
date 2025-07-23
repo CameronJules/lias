@@ -56,9 +56,9 @@ func init() {
 		&dataFile,
 		"datafile",
 		home+string(os.PathSeparator)+".lias.json",
-		"data file to store todos")
+		"data file to store projects")
 
-	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.lias.yaml)")
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is ./config/.lias.yaml)")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
@@ -73,12 +73,18 @@ func initConfig() {
 	}
 
 	viper.SetConfigName(".lias")
+	viper.SetConfigType("yaml")
+	viper.AddConfigPath("./config")
+	viper.AddConfigPath(".")
 	viper.AddConfigPath("$HOME")
 	viper.AutomaticEnv()
 	viper.SetEnvPrefix("lias")
 
+	viper.SetDefault("active_project", "")
+
 	err := viper.ReadInConfig()
-	if err == nil {
-		fmt.Println("Using config file:", viper.ConfigFileUsed())
+	if err != nil {
+		fmt.Println("Error reading config:", err)
 	}
+
 }
