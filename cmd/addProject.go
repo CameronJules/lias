@@ -14,12 +14,12 @@ import (
 
 // addProjectCmd represents the addProject command
 var addProjectCmd = &cobra.Command{
-	Use:   "project",
+	Use:   "add",
 	Short: "add projects",
 	Long: `
 	add a new project to contain new aliases
 	
-	Example: lias add project projectName"`,
+	Example: lias project add projectName"`,
 	Run: addProject,
 }
 
@@ -39,7 +39,7 @@ func addProject(cmd *cobra.Command, args []string) {
 }
 
 func init() {
-	addCmd.AddCommand(addProjectCmd)
+	projectCmd.AddCommand(addProjectCmd)
 
 	// Here you will define your flags and configuration settings.
 

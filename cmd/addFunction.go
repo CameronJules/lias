@@ -13,7 +13,7 @@ import (
 
 // addFunctionCmd represents the addFunction command
 var addFunctionCmd = &cobra.Command{
-	Use:   "function",
+	Use:   "add",
 	Short: "Add function to project",
 	Long: `
 	Add function to a specified project
@@ -44,7 +44,7 @@ func addFunction(cmd *cobra.Command, args []string) {
 }
 
 func init() {
-	addCmd.AddCommand(addFunctionCmd)
+	functionCmd.AddCommand(addFunctionCmd)
 
 	// Here you will define your flags and configuration settings.
 

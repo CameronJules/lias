@@ -13,7 +13,7 @@ import (
 
 // deleteFunctionCmd represents the deleteFunction command
 var deleteFunctionCmd = &cobra.Command{
-	Use:   "function",
+	Use:   "delete",
 	Short: "Delete function from a project",
 	Long: `Specify the project and delete the function if it exists
 	
@@ -49,7 +49,7 @@ func deleteFunction(cmd *cobra.Command, args []string) {
 }
 
 func init() {
-	deleteCmd.AddCommand(deleteFunctionCmd)
+	functionCmd.AddCommand(deleteFunctionCmd)
 
 	// Here you will define your flags and configuration settings.
 

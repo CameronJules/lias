@@ -14,15 +14,10 @@ import (
 
 // listFunctionsCmd represents the listFunctions command
 var listFunctionsCmd = &cobra.Command{
-	Use:   "functions",
+	Use:   "list",
 	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	Run: listFunctions,
+	Long:  `Usage: `,
+	Run:   listFunctions,
 }
 
 func listFunctions(cmd *cobra.Command, args []string) {
@@ -60,7 +55,8 @@ func listFunctions(cmd *cobra.Command, args []string) {
 }
 
 func init() {
-	listCmd.AddCommand(listFunctionsCmd)
+	functionCmd.AddCommand(listFunctionsCmd)
+	functionCmd.AddCommand()
 
 	// Here you will define your flags and configuration settings.
 

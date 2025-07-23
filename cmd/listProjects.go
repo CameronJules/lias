@@ -14,7 +14,7 @@ import (
 
 // listProjectsCmd represents the listProjects command
 var listProjectsCmd = &cobra.Command{
-	Use:   "projects",
+	Use:   "list",
 	Short: "A brief description of your command",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
@@ -37,7 +37,7 @@ func listProjects(cmd *cobra.Command, args []string) {
 }
 
 func init() {
-	listCmd.AddCommand(listProjectsCmd)
+	projectCmd.AddCommand(listProjectsCmd)
 
 	// Here you will define your flags and configuration settings.
 
