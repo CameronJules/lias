@@ -15,9 +15,11 @@ import (
 // listFunctionsCmd represents the listFunctions command
 var listFunctionsCmd = &cobra.Command{
 	Use:   "list",
-	Short: "A brief description of your command",
-	Long:  `Usage: `,
-	Run:   listFunctions,
+	Short: "List functions",
+	Long: `List functions from the active project
+	
+	Example: lias function list`,
+	Run: listFunctions,
 }
 
 func listFunctions(cmd *cobra.Command, args []string) {

@@ -14,13 +14,13 @@ import (
 var activeCmd = &cobra.Command{
 	Use:   "active",
 	Short: "Show current active project",
-	Long:  `Usage: `,
+	Long:  `Usage: 'lias active' will display the current active project if one has been set`,
 	Run: func(cmd *cobra.Command, args []string) {
 		project := viper.GetString("active_project")
 		if project == "" {
 			fmt.Println("No active project set.")
 		} else {
-			fmt.Printf("Active project: %s", project)
+			fmt.Println("Active project:", project)
 		}
 	},
 }

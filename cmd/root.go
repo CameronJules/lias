@@ -20,13 +20,13 @@ var dataFile string
 var rootCmd = &cobra.Command{
 	Use:   "lias",
 	Short: "lias alias manager",
-	Long: `Lias allows you to organize your aliases into projects.
+	Long: `
+Lias allows you to organize your aliases into projects.
 It enables reuse of alias names and simple management for addition 
-and deletion.
+and deletion of aliases and projects.
 
 (Over-engineered aliases to learn Golang)
-	
-Example use: "lias proj-name func-name"`,
+	`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },

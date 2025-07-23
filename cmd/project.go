@@ -11,7 +11,9 @@ import (
 var projectCmd = &cobra.Command{
 	Use:   "project",
 	Short: "Commands for projects",
-	Long:  `Usage: `,
+	Long: `Use the subcommands to interact with projects,
+	
+	Example: lias project subcommand [args]`,
 }
 
 func init() {

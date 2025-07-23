@@ -19,7 +19,8 @@ var runCmd = &cobra.Command{
 	Short: "Run a specifed alias from a project",
 	Long: `Specify the project and alias from the project you want to run
 	
-	Example: lias run projectName functionName`,
+	run alias from the active project, selected by lias use [project name]
+	Example: lias run functionName`,
 	Run: runFunction,
 }
 

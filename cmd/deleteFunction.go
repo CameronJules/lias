@@ -16,8 +16,10 @@ var deleteFunctionCmd = &cobra.Command{
 	Use:   "delete",
 	Short: "Delete function from a project",
 	Long: `Specify the project and delete the function if it exists
+	This will delete the alias from the current active project.
+	The active project can be checked using 'lias active'
 	
-	lias delete function projectName functionName`,
+	lias function delete [alias]`,
 	Run: deleteFunction,
 }
 

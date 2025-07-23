@@ -17,8 +17,10 @@ var addFunctionCmd = &cobra.Command{
 	Short: "Add function to project",
 	Long: `
 	Add function to a specified project
+	Project must set as the active project using
+	lias use [project name]
 	
-	Example: lias add function proj_name alias function`,
+	Example: lias function add [alias] [command]`,
 	Run: addFunction,
 }
 

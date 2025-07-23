@@ -11,7 +11,11 @@ import (
 var functionCmd = &cobra.Command{
 	Use:   "function",
 	Short: "Function commands",
-	Long:  `Usage: `,
+	Long: `Use the subcommands to interact with functions in a project,
+	function commands operate on the current active project.
+	
+	The active project can be checked using 'lias active'
+	Example: lias function subcommand [args]`,
 }
 
 func init() {

@@ -15,8 +15,10 @@ import (
 var deleteProjectCmd = &cobra.Command{
 	Use:   "delete",
 	Short: "A brief description of your command",
-	Long:  `TODO`,
-	Run:   deleteProject,
+	Long: `Delete project and all of its functions
+	
+	Example: lias project delete [project name]`,
+	Run: deleteProject,
 }
 
 func deleteProject(cmd *cobra.Command, args []string) {

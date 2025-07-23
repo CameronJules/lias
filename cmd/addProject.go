@@ -16,8 +16,7 @@ import (
 var addProjectCmd = &cobra.Command{
 	Use:   "add",
 	Short: "add projects",
-	Long: `
-	add a new project to contain new aliases
+	Long: `Add a new project to store aliases
 	
 	Example: lias project add projectName"`,
 	Run: addProject,
