@@ -23,12 +23,12 @@ export $PATH
 
 | Description                        | Command                                                      |
 |------------------------------------|--------------------------------------------------------------|
-| Create a project                   | `lias add project [project name]`                            |
-| Create a function in a project     | `lias add function [project name] [alias] ["command to run"]`|
-| List projects                      | `lias list projects`                                         |
-| List functions in a project        | `lias list functions [project name]`                         |
-| Delete a project                   | `lias delete project [project name]`                         |
-| Delete a function                  | `lias delete function [project name] [function name]`        |
+| Create a project                   | `lias project add [project name]`                            |
+| List projects                      | `lias project list`                                         |
+| Delete a project                   | `lias project delete [project name]`                         |
+| Create a function in a project     | `lias function add [project name] [alias] ["command to run"]`|
+| List functions in a project        | `lias function list [project name]`                         |
+| Delete a function                  | `lias function delete [project name] [function name]`        |
 | Run an alias                       | `lias run [project name] [alias]`                            |
 
 
