@@ -15,8 +15,9 @@ An easy-to-use command-line tool to manage your aliases
 ```
 git clone https://github.com/CameronJules/lias.git
 cd lias
+go build
 go install
-export $PATH
+export PATH=$HOME/go/bin:$PATH
 ```
 
 ## 🔧 Commands
@@ -26,10 +27,12 @@ export $PATH
 | Create a project                   | `lias project add [project name]`                            |
 | List projects                      | `lias project list`                                         |
 | Delete a project                   | `lias project delete [project name]`                         |
-| Create a function in a project     | `lias function add [project name] [alias] ["command to run"]`|
-| List functions in a project        | `lias function list [project name]`                         |
-| Delete a function                  | `lias function delete [project name] [function name]`        |
-| Run an alias                       | `lias run [project name] [alias]`                            |
+| Use a project to store and run commands from    | `lias use [project name]`|
+| View the current active project   | `lias active`|
+| Create a function in the active project     | `lias function add [alias] ["command to run"]`|
+| List functions in the active project        | `lias function list`                         |
+| Delete a function from the active project                | `lias function delete [function name]`        |
+| Run an alias from the active project                       | `lias run [alias]`                            |
 
 
 
