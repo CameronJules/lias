@@ -1,6 +1,8 @@
 # Lias-CLI
 
-An easy-to-use command-line tool to manage your aliases
+An easy-to-use command-line tool to manage your aliases.
+
+This project was created to learn Golang, all critiques are welcome.
 
 ## ✨ Features
 
